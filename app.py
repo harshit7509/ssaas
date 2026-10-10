@@ -21,7 +21,74 @@ st.caption(
 # Example: enter revenue in ₹ crore if using INR crore.
 # ==========================================================
 
+
 st.sidebar.header("Company Information")
+
+stock_mode = st.sidebar.radio(
+    "Choose company input method",
+    ["Existing Listed Stock", "Enter Company Manually"]
+)
+
+listed_stocks = {
+    "Reliance Industries": {
+        "ticker": "RELIANCE.NS",
+        "price": 0.0
+    },
+    "TCS": {
+        "ticker": "TCS.NS",
+        "price": 0.0
+    },
+    "Infosys": {
+        "ticker": "INFY.NS",
+        "price": 0.0
+    },
+    "HDFC Bank": {
+        "ticker": "HDFCBANK.NS",
+        "price": 0.0
+    },
+    "ICICI Bank": {
+        "ticker": "ICICIBANK.NS",
+        "price": 0.0
+    },
+    "State Bank of India": {
+        "ticker": "SBIN.NS",
+        "price": 0.0
+    },
+    "ITC": {
+        "ticker": "ITC.NS",
+        "price": 0.0
+    },
+    "Bharti Airtel": {
+        "ticker": "BHARTIARTL.NS",
+        "price": 0.0
+    },
+    "Larsen & Toubro": {
+        "ticker": "LT.NS",
+        "price": 0.0
+    },
+    "Wipro": {
+        "ticker": "WIPRO.NS",
+        "price": 0.0
+    }
+}
+
+if stock_mode == "Existing Listed Stock":
+    selected_company = st.sidebar.selectbox(
+        "Select listed company",
+        list(listed_stocks.keys())
+    )
+    company = selected_company
+    ticker = listed_stocks[selected_company]["ticker"]
+
+    st.sidebar.caption(f"Yahoo Finance ticker: {ticker}")
+
+else:
+    company = st.sidebar.text_input(
+        "Company name",
+        "Sample Industries Ltd."
+    )
+    ticker = None
+
 
 company = st.sidebar.text_input("Company name", "Sample Industries Ltd.")
 currency = st.sidebar.selectbox(
